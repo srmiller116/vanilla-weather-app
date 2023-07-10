@@ -28,7 +28,8 @@ function showTemperature(response) {
   let temperatureRound = Math.round(response.data.main.temp);
   let temperatureResponse = document.querySelector("#temperature");
   let iconElement = document.querySelector("#icon");
-  temperatureResponse.innerHTML = `${temperatureRound}`;
+  celciusTemperature = Math.round(response.data.main.temp);
+  temperatureResponse.innerHTML = `${celciusTemperature}`;
   document.querySelector(
     "#humidity"
   ).innerHTML = `Humidity: ${response.data.main.humidity}%`;
@@ -77,15 +78,19 @@ function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   let temperature = temperatureElement.innerHTML;
+  celciusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = Math.round(celciusTemperature * 9) / 5 + 32;
 }
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   let temperature = temperatureElement.innerHTML;
+  celciusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
@@ -93,3 +98,5 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+let celciusTemperature = null;
