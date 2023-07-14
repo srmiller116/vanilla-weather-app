@@ -1,6 +1,6 @@
 footer {
   text-align: right;
-
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
 }
 .container {
@@ -8,9 +8,19 @@ footer {
   border-color: black;
   padding: 50;
   margin: 10px;
+  border-radius: 10px;
 }
 h6 {
   text-align: right;
+  font-family: "Open Sans", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Open Sans", sans-serif;
+  color: #073763;
 }
 a {
   text-decoration: none;
@@ -24,19 +34,35 @@ a {
   display: block;
   margin: 0 auto;
   background-color: lavender;
+  border-radius: 10px;
 }
 .temperature {
   font-size: x-large;
+  font-family: "Open Sans", sans-serif;
 }
 .units {
   font-size: medium;
   text-decoration: none;
   position: relative;
   top: -5px;
+  font-family: "Open Sans", sans-serif;
 }
-.current-location {
-  border-style: none;
+.currentLocation {
+  display: block;
+  margin: 0 auto;
+  background-color: #073763;
+  font-weight: bolder;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 10px;
+  color: ivory;
 }
+.currentLocation:hover {
+  font-weight: bolder;
+  background-color: ivory;
+  color: #073763;
+  font-family: "Open Sans", sans-serif;
+}
+
 .active {
   color: black;
   cursor: default;
@@ -44,4 +70,18 @@ a {
 
 .active:hover {
   text-decoration: none;
+}
+
+.searchButton {
+  background-color: #43163d;
+  font-weight: bolder;
+  color: ivory;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 10px;
+}
+.searchButton:hover {
+  color: #43163d;
+  background-color: ivory;
+  font-weight: bolder;
+  font-family: "Open Sans", sans-serif;
 }

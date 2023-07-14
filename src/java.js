@@ -79,7 +79,7 @@ if (hour < 10) {
   hour = `0${hour}`;
 }
 
-let displayCurrentTime = document.querySelector("h2");
+let displayCurrentTime = document.querySelector("h5");
 displayCurrentTime.innerHTML = `${day} ${hour}:${minutes}`;
 
 function convertToFahrenheit(event) {
