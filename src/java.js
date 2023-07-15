@@ -5,8 +5,10 @@ function citySearch(event) {
   cityUpdate.innerHTML = `Results for ${inputCity.value}`;
   let apiKey = "3f6be1c407b0d9d1933561808db358ba";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showTemperature);
-  formatDay();
+  axios.get(apiUrl).then(function (response) {
+    showTemperature(response);
+    formatDay(response.data.dt);
+  });
 }
 
 function searchCurrentLocation() {
@@ -48,7 +50,9 @@ function showTemperature(response) {
 function getForecast(coordinates) {
   let apiKey = "3f6be1c407b0d9d1933561808db358ba";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(formatDay);
+  axios.get(apiUrl).then(function (response) {
+    displayForecast(response.data);
+  });
 }
 
 let searchButton = document.querySelector("#search-button");
@@ -112,14 +116,14 @@ function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let fday = date.getDay();
   let fdays = ["Sun", "Mon", "Tue", "wed", "Thur", "Fri", "Sat"];
+
   return fdays[fday];
-  displayForecast();
 }
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let forecast = response.data.daily;
+  let forecast = response.daily;
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
