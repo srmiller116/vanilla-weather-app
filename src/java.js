@@ -88,7 +88,7 @@ displayCurrentTime.innerHTML = `${day} ${hour}:${minutes}`;
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let fday = date.getDay();
-  let fdays = ["Sun", "Mon", "Tue", "wed", "Thur", "Fri", "Sat"];
+  let fdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return fdays[fday];
 }
