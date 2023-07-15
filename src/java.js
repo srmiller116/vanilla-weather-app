@@ -4,7 +4,7 @@ function citySearch(event) {
   let cityUpdate = document.querySelector("h1");
   cityUpdate.innerHTML = `Results for ${inputCity.value}`;
   let apiKey = "3f6be1c407b0d9d1933561808db358ba";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(function (response) {
     showTemperature(response);
     formatDay(response.data.dt);
@@ -21,7 +21,7 @@ function showPosition(position) {
   console.log(`${myLatitude}`);
   console.log(`${myLongitude}`);
   let apiKey = "3f6be1c407b0d9d1933561808db358ba";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${myLatitude}&lon=${myLongitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${myLatitude}&lon=${myLongitude}&appid=${apiKey}&units=imperial`;
   let displayCurrent = document.querySelector("h1");
   displayCurrent.innerHTML = `Results for lat = ${myLatitude} long = ${myLongitude}`;
 
@@ -49,7 +49,7 @@ function showTemperature(response) {
 }
 function getForecast(coordinates) {
   let apiKey = "3f6be1c407b0d9d1933561808db358ba";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(function (response) {
     displayForecast(response.data);
   });
@@ -84,33 +84,6 @@ if (hour < 10) {
 
 let displayCurrentTime = document.querySelector("h5");
 displayCurrentTime.innerHTML = `${day} ${hour}:${minutes}`;
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  celciusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round(celciusTemperature * 9) / 5 + 32;
-}
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  celciusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round(celciusTemperature);
-}
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", convertToCelsius);
-
-let celciusTemperature = null;
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
